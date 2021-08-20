@@ -26,8 +26,10 @@ variable "vm_password" {
 variable "vms" {
   description = "List of resources to create"
   type        = list(any)
-  default = [{ "number" = "85", "name" = "swarm", "ip_addr_pref" = "10.8.1" },
-  { "number" = "86", "name" = "swarm", "ip_addr_pref" = "10.8.1" }]
+  default = [
+    { "number" = "85", "name" = "swarm", "ip_addr_pref" = "10.8.1" },
+    { "number" = "86", "name" = "swarm", "ip_addr_pref" = "10.8.1" }
+  ]
 }
 
 variable "vm_public_ssh_keys" {
