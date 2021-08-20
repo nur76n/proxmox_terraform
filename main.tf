@@ -4,14 +4,9 @@ terraform {
       source  = "telmate/proxmox"
       version = "2.7.4"
     }
-    local = {
-      source = "hashicorp/local"
-    }
-    null = {
-      source = "hashicorp/null"
-    }
-    template = {
-      source = "hashicorp/template"
+    mikrotik = {
+      source  = "ddelnano/mikrotik"
+      version = "0.7.0"
     }
   }
 }
@@ -24,6 +19,11 @@ provider "proxmox" {
   pm_timeout      = 1800
 }
 
+provider "mikrotik" {
+  host     = "${var.mikrotik_ip}:8728"
+  username = var.mikrotik_user
+  password = var.mikrotik_pwd
+}
 
 resource "proxmox_vm_qemu" "cloudinit-test" {
   count       = length(var.vms)
@@ -52,6 +52,7 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
     bridge = "vmbr0"
   }
 
+  cpu     = "kvm64"
   cores   = 4
   sockets = 1
   memory  = 2048
@@ -64,4 +65,11 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
 
   sshkeys = join("\n", var.vm_public_ssh_keys)
 
+}
+
+resource "mikrotik_dns_record" "record" {
+  count   = length(var.vms)
+  name    = "${var.vms[count.index].name}-${var.vms[count.index].number}.znb.kz"
+  address = "${var.vms[count.index].ip_addr_pref}.${var.vms[count.index].number}"
+  ttl     = 300
 }

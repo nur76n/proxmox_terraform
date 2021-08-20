@@ -36,3 +36,18 @@ variable "vm_public_ssh_keys" {
   description = "vm public_ssh_keys"
   type        = list(string)
 }
+
+variable "mikrotik_ip" {
+  description = "mikrotik_ip"
+  type        = string
+}
+
+variable "mikrotik_user" {
+  description = "mikrotik_user"
+  type        = string
+}
+
+variable "mikrotik_pwd" {
+  description = "mikrotik_pwd"
+  type        = string
+}

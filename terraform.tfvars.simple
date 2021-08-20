@@ -4,3 +4,6 @@ pve_addr           = ""
 vm_user            = ""
 vm_password        = ""
 vm_public_ssh_keys = [""]
+mikrotik_ip        = ""
+mikrotik_user      = ""
+mikrotik_pwd       = ""
