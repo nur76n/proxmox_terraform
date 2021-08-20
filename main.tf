@@ -21,11 +21,13 @@ provider "proxmox" {
   pm_user         = var.pve_user
   pm_password     = var.pve_password
   pm_tls_insecure = true
+  pm_timeout      = 1800
 }
 
 
 resource "proxmox_vm_qemu" "cloudinit-test" {
   count       = length(var.vms)
+  vmid = "1${var.vms[count.index].number}"
   name        = "${var.vms[count.index].name}-${var.vms[count.index].number}"
   desc        = "tf description"
   target_node = "pve1"
