@@ -1,0 +1,6 @@
+pve_user           = ""
+pve_password       = ""
+pve_addr           = ""
+vm_user            = ""
+vm_password        = ""
+vm_public_ssh_keys = [""]
