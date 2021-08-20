@@ -27,8 +27,9 @@ variable "vms" {
   description = "List of resources to create"
   type        = list(any)
   default = [
-    { "number" = "85", "name" = "swarm", "ip_addr_pref" = "10.8.1" },
-    { "number" = "86", "name" = "swarm", "ip_addr_pref" = "10.8.1" }
+    { "number" = "20", "name" = "gluster", "ip_addr_pref" = "10.8.1" },
+    { "number" = "21", "name" = "gluster", "ip_addr_pref" = "10.8.1" },
+    { "number" = "22", "name" = "gluster", "ip_addr_pref" = "10.8.1" }
   ]
 }
 

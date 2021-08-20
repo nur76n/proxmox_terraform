@@ -30,9 +30,10 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
   vmid        = "1${var.vms[count.index].number}"
   name        = "${var.vms[count.index].name}-${var.vms[count.index].number}"
   desc        = "tf description"
-  target_node = "pve1"
+  target_node = "pve2"
 
-  clone = "ubuntu-cloud-init-template"
+  clone      = "ubuntu-cloud-init-template"
+  full_clone = false
 
   pool     = "terraform"
   boot     = "cdn"
@@ -42,7 +43,7 @@ resource "proxmox_vm_qemu" "cloudinit-test" {
   disk {
     backup  = 0
     type    = "scsi"
-    storage = "local-lvm-cached"
+    storage = "local-lvm"
     size    = "8G"
     cache   = "writeback"
   }
